@@ -11,7 +11,7 @@ import SignUpForm from "../components/SignUpForm";
 import colors from "../constants/colors";
 import logo from '../assets/images/logo.png';
 const AuthScreen = (props) => {
-  const [isSignUp,setIsSignUp]=useState(false)
+  const [isSignUp,setIsSignUp]=useState(true)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <PageContainer>
