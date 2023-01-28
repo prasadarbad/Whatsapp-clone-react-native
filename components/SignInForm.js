@@ -3,23 +3,29 @@ import { Feather, FontAwesome } from "@expo/vector-icons";
 import SubmitButton from "../components/SubmitButton";
 import Input from "../components/Input";
 
-
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducer";
 const initialState = {
-    inputValidities: {
-      
-      email: false,
-      password: false,
-    },
-    formIsValid: false,
-  };
+  inputValues: {
+    
+    email: "",
+    password: "",
+  },
+  inputValidities: {
+    email: false,
+    password: false,
+  },
+  formIsValid: false,
+};
 const SignInForm = (props) => {
-    const [formState, dispatchFormState] = useReducer(reducer, initialState);
-    const inputChangedHandler =useCallback ((inputId, inputValue) => {
-        const result = validateInput(inputId, inputValue);
-        dispatchFormState({ inputId, validationResult: result });
-      },[dispatchFormState]);
+  const [formState, dispatchFormState] = useReducer(reducer, initialState);
+  const inputChangedHandler = useCallback(
+    (inputId, inputValue) => {
+      const result = validateInput(inputId, inputValue);
+      dispatchFormState({ inputId, validationResult: result,inputValue });
+    },
+    [dispatchFormState]
+  );
   return (
     <>
       <Input
