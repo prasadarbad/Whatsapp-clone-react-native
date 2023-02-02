@@ -68,9 +68,11 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   errorText: {
-    color: "red",
+    color: 'red',
     fontSize: 13,
-    fontFamily: 0.3,
+    fontFamily: 'regular',
+    letterSpacing: 0.3
+
   },
 });
 export default Input;

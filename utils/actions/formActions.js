@@ -2,8 +2,8 @@ import { validateEmail,validatePassword,validateString } from "../validationCons
 export const validateInput=(inputId,inputValue)=>{
     if (inputId === "firstName" || inputId === "lastName") {
         return validateString(inputId,inputValue)
-      } else if (inputId === "email") {
+      } else if (inputId === "email" ||inputId === "emailId") {
           return validateEmail(inputId,inputValue)
-      } else if (inputId === "password") {
+      } else if (inputId === "password"||inputId === "passwordId") {
       }  return validatePassword(inputId,inputValue)
 }

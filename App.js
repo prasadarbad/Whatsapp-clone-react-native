@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 import AppNavigator from "./navigation/AppNavigator";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+AsyncStorage.clear();
 LogBox.ignoreLogs(['AsyncStorage has been extracted']);
 
 
@@ -41,11 +43,7 @@ export default function App() {
     };
     prepare();
   }, []);
-  useEffect(() => {
-    setTimeout(() => {
-      setAppIsLoaded(true);
-    }, 2000);
-  });
+
   const onLayout = useCallback(async () => {
     if (appIsLoaded) {
       await SplashScreen.hideAsync();

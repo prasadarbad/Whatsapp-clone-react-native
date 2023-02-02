@@ -27,8 +27,10 @@ const initialState = {
 };
 
 const SignUpForm = (props) => {
-  
+  const userData = useSelector(state=>state.auth);
   const dispatch = useDispatch();
+  
+   
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
@@ -42,7 +44,7 @@ const SignUpForm = (props) => {
       Alert.alert("An error occured", error,[{text:"Okay"}]);
     }
   },[error]);
-  const authHandler = async () => {
+  const authHandler =useCallback( async () => {
     try {
       setIsLoading(true);
       const action = signUp(
@@ -51,13 +53,14 @@ const SignUpForm = (props) => {
         formState.inputValues.email,
         formState.inputValues.password
       );
-      dispatch(action);
       setError(null);
+   await dispatch(action);
+      
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
     }
-  };
+  },[dispatch,formState]);
 
   return (
     <>
