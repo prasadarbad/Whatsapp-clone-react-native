@@ -2,8 +2,11 @@ import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import colors from "../constants/colors";
 import { FontAwesome } from "@expo/vector-icons";
+import { useState } from "react";
 const Input = (props) => {
+  const [value,setValue]=useState(props.initialValue)
     const onChangeText =text =>{
+      setValue(text);
         props.onInputChanged(props.id,text);
     }
   return (
@@ -20,7 +23,9 @@ const Input = (props) => {
         <TextInput
         {...props}
         style={styles.input}
-        onChangeText={onChangeText} />
+        onChangeText={onChangeText} 
+        value={value}
+        />
       </View>
      {
      props.errorText && <View style={styles.errorContainer}>
