@@ -1,5 +1,5 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from "expo-font";
 import ChatListScreen from "../Screens/ChatListScreen";
@@ -7,7 +7,9 @@ import ChatSettingScreen from "../Screens/ChatSettingScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SettingsScreen from "../Screens/SettingsScreen";
 import ChatScreen from "../Screens/ChatScreen";
-const Stack = createStackNavigator();
+import NewChatScreen from "../Screens/NewChatScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -36,6 +38,7 @@ const MainNavigator =props=>{
  
 return(
     <Stack.Navigator>
+      <Stack.Group>
     <Stack.Screen
       name="Home"
       component={TabNavigator}
@@ -56,6 +59,14 @@ return(
         headerTitle: "Settings",
       }}
     />
+    </Stack.Group>
+    <Stack.Group screenOptions={{presentation:'containedModal'}}>
+    <Stack.Screen
+      name="NewChat"
+      component={NewChatScreen}
+      
+    />
+    </Stack.Group>
   </Stack.Navigator>
 );
 };
